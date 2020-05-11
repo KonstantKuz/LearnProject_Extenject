@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class Player : MonoBehaviour, IMove, IShoot
     [SerializeField] private Pistol playerGun = null;
 
     public IGun gun { get { return playerGun; } }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     // Update is called once per frame
     void Update()
@@ -28,9 +34,25 @@ public class Player : MonoBehaviour, IMove, IShoot
     public void Move()
     {
         transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, transform.up);
+        
         if(Input.GetKey(KeyCode.W))
         {
             transform.position += transform.forward * moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position -= transform.forward * moveSpeed;
+        }
+        
+        if(Input.GetKey(KeyCode.D))
+        {
+            transform.position += transform.right * moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position -= transform.right * moveSpeed;
         }
     }
 }
