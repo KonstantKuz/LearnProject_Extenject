@@ -288,6 +288,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 130953523}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &130953527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 130953527, guid: 5bfb173e41f2741439730a2fa5659882,
+    type: 3}
+  m_PrefabInstance: {fileID: 130953523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794f37e4de59f15408381644b35c24a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632890129
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +573,7 @@ GameObject:
   - component: {fileID: 1299275740}
   - component: {fileID: 1299275739}
   - component: {fileID: 1299275738}
+  - component: {fileID: 1299275742}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -637,13 +650,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299275737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.469, z: 0}
+  m_LocalPosition: {x: 1.05, y: 1.469, z: 15.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 130953524}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299275742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299275737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af3033a5c8cefd47b1aa29852d8d9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.1
+  rotationSpeed: 0.1
+  enemyGun: {fileID: 130953527}
 --- !u!1 &1652928997
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01873fc818685784fabbb8f56fa0afee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1715595445}
   pool: {fileID: 632890130}
 --- !u!114 &1658747469
 MonoBehaviour:
@@ -924,6 +953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dbd46ed06ecac4b9719f1bc9fb4ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  rotationSpeed: 2
+  moveSpeed: 0.1
+  rotationSpeed: 0.1
   playerGun: {fileID: 715346920}
