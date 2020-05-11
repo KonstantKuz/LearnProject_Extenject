@@ -427,6 +427,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AudioManager.cs" t="Include" />
           <e p="Bullet.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="IGun.cs" t="Include" />
