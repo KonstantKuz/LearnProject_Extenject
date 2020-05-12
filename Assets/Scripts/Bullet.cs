@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolObject<Bullet>
 {
+    public IObjectPool<Bullet> pool { get; set; }
     [SerializeField] private float moveSpeed = 5f;
 
     private AudioManager audioManager = null;
@@ -18,11 +19,12 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         audioManager.PlaySound("Play hit sound!");
-        GetComponent<PooledObject>().DelayedReturnToPool(0);
+        pool.Return(this);
     }
     
     void Update()
     {
         transform.position += transform.forward * moveSpeed;
     }
+
 }

@@ -6,6 +6,5 @@ using Zenject;
 public interface IGun
 {
     Transform Barrel { get; }
-    ObjectPool Pool { get; }
     void Fire();
 }

@@ -8,12 +8,13 @@ public class Rifle : MonoBehaviour, IGun
     [SerializeField] private int bulletCount = 3;
     [SerializeField] private Transform barrel = null;
     public Transform Barrel { get { return barrel; } }
-    public ObjectPool Pool { get; private set; }
+
+    public BulletFactoryPool bulletFactPool;
 
     [Inject]
-    public void Construct(ObjectPool pool)
+    public void Construct(BulletFactoryPool factoryPool)
     {
-        Pool = pool;
+        bulletFactPool = factoryPool;
     }
 
     public void Fire()
@@ -25,10 +26,9 @@ public class Rifle : MonoBehaviour, IGun
     {
         for (int i = 0; i < bulletCount; i++)
         {
-            GameObject bullet = Pool.GetObject("Bullet");
+            GameObject bullet = bulletFactPool.Spawn().gameObject;
             bullet.transform.position = Barrel.position;
             bullet.transform.rotation = Barrel.rotation;
-            bullet.GetComponent<PooledObject>().DelayedReturnToPool(5f);
             yield return new WaitForSeconds(0.2f);
         }
     }

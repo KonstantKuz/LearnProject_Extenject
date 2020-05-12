@@ -7,19 +7,19 @@ public class Pistol : MonoBehaviour, IGun
 {
     [SerializeField] private Transform barrel = null;
     public Transform Barrel { get { return barrel; } }
-    public ObjectPool Pool { get; private set; }
-
+    
+    public BulletFactoryPool bulletFactPool;
+    
     [Inject]
-    public void Construct(ObjectPool pool)
+    public void Construct(BulletFactoryPool factoryPool)
     {
-        Pool = pool;
+        bulletFactPool = factoryPool;
     }
 
     public void Fire()
     {
-        GameObject bullet = Pool.GetObject("Bullet");
+        GameObject bullet = bulletFactPool.Spawn().gameObject;
         bullet.transform.position = Barrel.position;
         bullet.transform.rotation = Barrel.rotation;
-        bullet.GetComponent<PooledObject>().DelayedReturnToPool(5f);
     }
 }
