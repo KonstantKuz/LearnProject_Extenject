@@ -6,4 +6,5 @@
 public interface IObjectPool<T>
 {
     void Return(T obj);
+    void Return(T obj, float delay);
 }

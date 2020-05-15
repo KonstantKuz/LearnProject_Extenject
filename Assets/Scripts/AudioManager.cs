@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public interface IAudioManager
 {
-    public void PlaySound(string message)
+    void PlaySound(string name);
+}
+
+public class AudioManager : MonoBehaviour, IAudioManager
+{
+    public void PlaySound(string name)
     {
-        Debug.Log(message);
+        Debug.Log("Play sound with name :" + name);
     }
 }

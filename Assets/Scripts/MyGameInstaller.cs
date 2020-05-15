@@ -8,6 +8,6 @@ public class MyGameInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.BindInterfacesAndSelfTo<Player>().FromInstance(player).AsSingle();
-        Container.Bind<AudioManager>().FromInstance(audioManager).AsSingle();
+        Container.Bind<IAudioManager>().FromInstance(audioManager).AsSingle();
     }
 }
