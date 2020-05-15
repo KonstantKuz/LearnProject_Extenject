@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Bullet : MonoBehaviour, IPoolObject<Bullet>
+public class Bullet : MonoBehaviour, IPooledObject<Bullet>
 {
-    public IObjectPool<Bullet> pool { get; set; }
     [SerializeField] private float moveSpeed = 5f;
-
+    public IObjectPool<Bullet> pool { get; set; }
     private IAudioManager audioManager = null;
 
     [Inject]
@@ -19,7 +18,7 @@ public class Bullet : MonoBehaviour, IPoolObject<Bullet>
 
     private void Start()
     {
-        pool.Return(this, 10f);
+        pool.Return(this, 5f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,5 +31,4 @@ public class Bullet : MonoBehaviour, IPoolObject<Bullet>
     {
         transform.position += transform.forward * moveSpeed;
     }
-
 }

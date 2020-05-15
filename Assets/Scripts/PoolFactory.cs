@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class PoolFactory<T> : MonoBehaviour, IObjectPool<T> where T : MonoBehaviour, IPoolObject<T>
+public interface IPooledObject<T>
+{
+    IObjectPool<T> pool { get; set; }
+}
+
+public interface IObjectPool<T>
+{
+    void Return(T obj);
+    void Return(T obj, float delay);
+}
+
+public class PoolFactory<T> : MonoBehaviour, IObjectPool<T> where T : MonoBehaviour, IPooledObject<T>
  {
     [SerializeField] private GameObject prefab = null;
     [SerializeField] private Transform parent = null;
@@ -20,25 +31,25 @@ public class PoolFactory<T> : MonoBehaviour, IObjectPool<T> where T : MonoBehavi
     {
         this.factory = factory;
         pool = new Queue<T>();
-        
     }
+    
     public T Spawn()
     {
-        T spawnObj;
+        T item;
         
         if(pool.Count > 0)
         {
-            spawnObj = pool.Dequeue();
-            spawnObj.gameObject.SetActive(true);
+            item = pool.Dequeue();
+            item.gameObject.SetActive(true);
         }
         else
         {
-            spawnObj = factory.Create();
-            spawnObj.transform.parent = parent;
-            spawnObj.gameObject.GetComponent<T>().pool = this;
+            item = factory.Create();
+            item.transform.parent = parent;
+            item.pool = this;
         }
         
-        return spawnObj;
+        return item;
     }
     
     public void Return(T item)
